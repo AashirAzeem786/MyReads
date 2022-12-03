@@ -15,17 +15,23 @@ const SearchPage = ({ ShelvesBooks, setBookShelf }) => {
         if (res.error) {
           setSearchResults([]);
         } else {
-          res.forEach((book) => {
-            const bookOnShelf = ShelvesBooks.find(
-              (books) => books.book.id === book.id
-            );
-            if (bookOnShelf) {
-              book.shelf = bookOnShelf.shelf;
-            } else {
-              book.shelf = "none";
-            }
-          });
-          setSearchResults(res);
+
+          res.map((book) => {
+
+              const bookOnShelf = ShelvesBooks.find(
+                (books) => books.book.id === book.id
+              );
+              if (bookOnShelf) {
+                book.shelf = bookOnShelf.shelf;
+              } else {
+                book.shelf = "none";
+              }
+
+              
+           
+    
+          })
+            setSearchResults(res);
         }
       });
     }

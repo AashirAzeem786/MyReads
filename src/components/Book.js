@@ -7,7 +7,9 @@ const Book = ({ book, onUpdateShelf, currentShelf }) => {
     onUpdateShelf(book, e.target.value);
     setShelf(e.target.value);
   };
-
+  let bgimage;
+    if (book.imageLinks && book.imageLinks.thumbnail)
+  bgimage = `url(${book.imageLinks.thumbnail}`;
   return (
     <li key={book.id}>
       <div className="book">
@@ -17,7 +19,7 @@ const Book = ({ book, onUpdateShelf, currentShelf }) => {
             style={{
               width: 128,
               height: 193,
-              backgroundImage: `url(${book.imageLinks.thumbnail})`,
+              backgroundImage: bgimage
             }}
           ></div>
           <div className="book-shelf-changer">

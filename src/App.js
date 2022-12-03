@@ -12,12 +12,20 @@ function App() {
   React.useEffect(() => {
     const getAllBooks = async () => {
       const allBooks = await BooksAPI.getAll();
-      allBooks.forEach((books) => {
-        setShelvesBooks((ShelvesBooks) => [
-          ...ShelvesBooks,
-          { book: books, shelf: books.shelf },
-        ]);
-      });
+
+      allBooks.map((books) => {
+
+        if( books.imageLinks.thumbnail){
+          // console.log("books.imageLinks.thumbnail");
+          //console.log(books.imageLinks.thumbnail);
+          setShelvesBooks((ShelvesBooks) => [
+            ...ShelvesBooks,
+            { book: books, shelf: books.shelf },
+          ]);
+        }
+       
+
+      })
     };
     getAllBooks();
     return () => {
